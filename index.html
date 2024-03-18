@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Add To Cart</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-dark ms-auto">
+            <div class="container  ">
+              <a class="navbar-brand text-white" href="#">R A D O</a>
+              <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="gallery.html">Gallery</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="about us.html">About Us</a>
+                  </li>
+                  <div class="dropdown">
+                    <a href="backup.html " class="btn btn-light text-dark">Category
+                    </a>
+                  </div>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="contact.html">Contact Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="feednackk.html " class="btn btn-light text-dark">feedback</a>
+                  </li>
+               <li class="nav-item"> 
+            <a href="#" id="cart-icon" class="nav-link"><i class="fa fa-shopping-cart text-white" style="font-size: 24px;"></i> <span id="card-quantity" class="badge bg-primary"></span></a>
+           
+               </li>
+            <li class="nav-item">
+        <a  class="nav-link disabled text-white">Disabled</a>
+            </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <div class="modal fade" id="cart-modal">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cart-modal-label">Buy Now</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body" id="cart-modal-body">
+            
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                    </div>
+                </div>
+            </div>
+                      </div>
+
+<div class="container mt-3">
+    <div class="row ">
+        <div class="col-3">
+            <div class="card">
+             <img src="https://www.shutterstock.com/image-photo/kristianstad-sweden-june-4th-2018-260nw-1152923114.jpg" alt=""> 
+             <div class="card-body">
+              <h4>Rado Watch</h4>
+              <h6>Price 4400</h6>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat!</p>
+              <a href="" class="btn btn-outline-dark add-to-cart" data-id="1">Add To Cart</a>
+          </div>
+            </div>  
+          </div>
+
+        <div class="col-3">
+         <div class="card">
+            <img src="https://c4.wallpaperflare.com/wallpaper/29/520/1004/breitling-swiss-luxury-watches-swiss-wrist-watches-luxury-analog-watch-breitling-hd-wallpaper-preview.jpg" alt="">
+            <div class="card-body">
+                <h4> Breitling</h4>
+                <h6>Price 5400</h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat!</p>
+                <a href="" class="btn btn-outline-dark add-to-cart" data-id="2">Add To Cart</a>
+            </div>
+         </div>   
+        </div>
+
+        <div class="col-3">
+          <div class="card">
+           <img src="https://www.shutterstock.com/image-photo/kristianstad-sweden-june-4th-2018-260nw-1152923114.jpg" alt=""> 
+           <div class="card-body">
+            <h4>Omega</h4>
+            <h6>Price 5000</h6>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat!</p>
+            <a href="" class="btn btn-outline-dark add-to-cart" data-id="3">Add To Cart</a>
+        </div>
+          </div>  
+        </div>
+
+        <div class="col-3">
+          <div class="card">
+            <img src="https://www.horbiter.com/wp-content/uploads/2021/09/IWC-Da-Vinci-Perpetual-Calendar-Chronograph-IW392103-evi.jpg" alt="">
+            <div class="card-body">
+                <h4>IWC</h4>
+                <h6>Price 3400</h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat!</p>
+                <a href="" class="btn btn-outline-dark add-to-cart" data-id="4">Add To Cart</a>
+            </div>
+          </div>  
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.add-to-cart').forEach(b =>{
+        b.addEventListener('click',addToCart);
+    });
+    function addToCart(event){
+        event.preventDefault();
+        const productId = event.target.dataset.id;
+
+        let cart =JSON.parse(localStorage.getItem('cart')) || {};
+
+        cart[productId] = (cart[productId] || 0) +1;
+
+        updatecartQuantity(cart);
+
+        localStorage.setItem('cart',JSON.stringify(cart));
+    }
+
+       function updatecartQuantity(cart){
+        const cartQuantity = Object.values(cart).reduce((acc,val)=>acc+ val,0);
+        document.getElementById('card-quantity').textContent =cartQuantity;
+       }
+
+       const initCart = JSON.parse(localStorage.getItem('cart'))||{};
+            updatecartQuantity(initCart);
+            
+            //next class
+
+            document.getElementById('cart-icon').addEventListener('click' ,showCart);
+
+            function showCart (){
+                const cart = JSON.parse(localStorage.getItem('cart'))||{};
+
+                document.getElementById('cart-modal-body').innerHTML = "";
+
+                for(const productId in cart){
+                    const quantity = cart[productId];
+
+                    const productHTMl = `
+                    <div class="row border-bottom py-2">
+                        <div class="col-2">
+                            <img src="https://www.shutterstock.com/image-photo/kristianstad-sweden-june-4th-2018-260nw-1152923114.jpg" height="50px" alt="Prodct Image">
+                        </div>
+                        <div class="col-6">
+                            <p>Google</p>
+                            <p>Prices: $65422</p>
+                            <p>Quantity: ${quantity}</p>
+                            </div>
+                            <div class="col-4 align-self-center">
+                                <button class="btn btn-danger delete-from-cart" data-id="${productId}">Delete</button>
+                                </div>
+                            </div>`;
+                            document.getElementById('cart-modal-body').innerHTML +=productHTMl; 
+                        }
+
+                          const myModal = new bootstrap.Modal(document.getElementById('cart-modal'));
+                          myModal.show(); 
+                          document.querySelectorAll('.delete-from-cart').forEach(button=> {
+                            button.addEventListener('click', deleteFromCart);
+                          });
+            }
+
+            function deleteFromCart(event){
+                const productId = event.target.dataset.id;
+
+                let cart = JSON.parse(localStorage.getItem('cart'))||{};
+
+                delete cart[productId];
+
+                updatecartQuantity(cart);
+
+                localStorage.setItem('cart' , JSON.stringify(cart));
+
+                showCart();
+            }
+</script>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
